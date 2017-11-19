@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
 http.createServer((req, res) => {
 	var fileName, contentType;
@@ -10,7 +11,7 @@ http.createServer((req, res) => {
 		fileName = 'sale.htm';
 		contentType = 'text/html';
 	}
-	fs.readFile(fileName, 'binary', (err, data) => {
+	fs.readFile(path.join(__dirname, fileName), 'binary', (err, data) => {
 		if (err) {
 			res.writeHead(500, { 'Content-Type': 'text/plain' });
 			res.end(err.message);
